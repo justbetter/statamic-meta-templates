@@ -17,14 +17,13 @@ class ServiceProvider extends AddonServiceProvider
 
     public function register(): void
     {
-//        $this->registerConfig();
+        $this->registerConfig();
     }
 
     public function bootAddon()
     {
         $this
             ->bootPublishables()
-            ->registerConfig()
             ->bootCustomFieldTypes();
     }
 
