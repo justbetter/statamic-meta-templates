@@ -1,0 +1,58 @@
+sections:
+  main:
+    display: Main
+    fields:
+      -
+        handle: title
+        field:
+          type: text
+          required: true
+          localizable: true
+          validate:
+            - required
+          instructions_position: above
+          listable: true
+          visibility: visible
+          always_save: false
+          input_type: text
+          antlers: false
+          display: Title
+      -
+        handle: info
+        field:
+          display: Info
+          type: section
+          icon: section
+          instructions: 'You can use {title} to display the title from your entry.'
+          listable: hidden
+          instructions_position: above
+          visibility: visible
+      -
+        import: meta_template
+  sidebar:
+    display: Sidebar
+    fields:
+      -
+        handle: slug
+        field:
+          type: slug
+          localizable: true
+          instructions_position: above
+          listable: hidden
+          visibility: visible
+          from: title
+          generate: true
+          validate:
+            - required
+      -
+        handle: to_collection
+        field:
+          max_items: 1
+          mode: select
+          display: Collection
+          type: meta_template_collections
+          icon: meta_template_collections
+          listable: hidden
+          instructions_position: above
+          visibility: visible
+title: 'Meta template'
