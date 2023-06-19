@@ -20,21 +20,21 @@ class ServiceProvider extends AddonServiceProvider
         $this->registerConfig();
     }
 
-    public function bootAddon()
+    public function bootAddon(): void
     {
         $this
             ->bootPublishables()
             ->bootCustomFieldTypes();
     }
 
-    public function registerConfig(): static
+    public function registerConfig(): self
     {
         $this->mergeConfigFrom(__DIR__.'/../config/justbetter-meta-templates.php', 'justbetter-meta-templates');
 
         return $this;
     }
 
-    public function bootPublishables(): static
+    public function bootPublishables(): self
     {
         $this->publishes([
             __DIR__.'/../resources/blueprints/collections' => resource_path('blueprints/collections'),
