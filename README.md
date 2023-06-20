@@ -8,7 +8,12 @@ This addon adds a new collection `Meta templates`, in this collection it's possi
 
 You can choose for which collection you want to add this data, the collections you can choose from are based on what you have entered in the config.
 
-When saving a meta template it will go through all the entries of your chosen collection and update the `Meta title` and `Meta description` fields.
+Upon page render this addon will check the entry to see if the `Meta title` or `Meta description` have been filled.
+If that's not the case we will check to see if there is a meta template configured for this entry, if so we will use the data from the template.
+
+## Installation
+
+After installing this addon you should publish the vendor of this addon as explained below.
 
 ## Note
 
@@ -17,10 +22,6 @@ Most SEO addons will have some basic fields on collections like `meta_title` or 
 If you are not using any SEO addons or you don't have these fields on your collection you will have to add these manually.
 
 This addon also only adds the metadata to your entries, it won't display it on your frontend. This should be done by your SEO addon or your theme.
-
-## Installation
-
-After installing this addon you should publish the vendor of this addon as explained below.
 
 ## Config
 

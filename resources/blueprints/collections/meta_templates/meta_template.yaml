@@ -45,7 +45,7 @@ sections:
           validate:
             - required
       -
-        handle: to_collection
+        handle: for_collection
         field:
           max_items: 1
           mode: select
@@ -55,4 +55,6 @@ sections:
           listable: hidden
           instructions_position: above
           visibility: visible
+          validate:
+            - required
 title: 'Meta template'

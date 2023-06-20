@@ -4,7 +4,6 @@ propagate: false
 template: default
 layout: layout
 taxonomies:
-  - function
 revisions: false
 sort_dir: asc
 date_behavior:
