@@ -54,21 +54,6 @@ class ServiceProvider extends AddonServiceProvider
         return $this;
     }
 
-    private function isCpRoute(\Illuminate\Routing\Route $route = null)
-    {
-        if (is_null($route)) {
-            return false;
-        }
-
-        $cp = Str::ensureRight(config('statamic.cp.route'), '/');
-
-        if ($cp === '/') {
-            return true;
-        }
-
-        return Str::startsWith($route->uri(), $cp);
-    }
-
     public function bootAddon(): void
     {
         $this
