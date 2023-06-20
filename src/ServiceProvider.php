@@ -2,22 +2,11 @@
 
 namespace JustBetter\StatamicMetadataTemplates;
 
-use Closure;
-use Statamic\Events\EntrySaved;
 use Statamic\Providers\AddonServiceProvider;
-use JustBetter\StatamicMetadataTemplates\Fieldtypes\Text;
-use JustBetter\StatamicMetadataTemplates\Fieldtypes\Textarea;
 use JustBetter\StatamicMetadataTemplates\Fieldtypes\MetaTemplateCollections;
-use JustBetter\StatamicMetadataTemplates\Listeners\SetEntryMetaTemplateListener;
-use JustBetter\StatamicMetadataTemplates\Routing\UrlBuilder;
-use JustBetter\StatamicMetadataTemplates\Fieldtypes\AardvarkSeoMetaTitleFieldtype;
-use JustBetter\StatamicMetadataTemplates\Fieldtypes\AardvarkSeoMetaDescriptionFieldtype;
-use JustBetter\StatamicMetadataTemplates\Fieldtypes\Entry;
 use Statamic\Facades\Collection;
-use Statamic\Facades\Entry as EntryFacade;
+use Statamic\Facades\Entry;
 use Statamic\Statamic;
-use Statamic\Support\Str;
-use Illuminate\Support\Facades\Route;
 
 class ServiceProvider extends AddonServiceProvider
 {
@@ -37,7 +26,7 @@ class ServiceProvider extends AddonServiceProvider
                             return $value;
                         }
 
-                        $metaTemplate = EntryFacade::query()->where('collection', 'meta_templates')->where('for_collection', $entry->collection->handle())->first();
+                        $metaTemplate = Entry::query()->where('collection', 'meta_templates')->where('for_collection', $entry->collection->handle())->first();
 
                         if (!$metaTemplate) {
                             return $value;
