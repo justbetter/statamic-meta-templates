@@ -36,7 +36,7 @@ trait MetaTemplate
 
                         $metaTemplate = $metaTemplateQuery->orderBy('terms')->first();
 
-                        if (!$metaTemplate) {
+                        if (!$metaTemplate || !isset($metadataFields[$field])) {
                             return $value;
                         }
 
