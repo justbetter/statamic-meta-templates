@@ -1,0 +1,19 @@
+{
+    "name": "justbetter/statamic-meta-templates",
+    "autoload": {
+        "psr-4": {
+            "JustBetter\\StatamicMetadataTemplates\\": "src"
+        }
+    },
+    "extra": {
+        "statamic": {
+            "name": "Statamic Meta Data Templates",
+            "description": "Statamic Meta Data Templates addon"
+        },
+        "laravel": {
+            "providers": [
+                "JustBetter\\StatamicMetadataTemplates\\ServiceProvider"
+            ]
+        }
+    }
+}

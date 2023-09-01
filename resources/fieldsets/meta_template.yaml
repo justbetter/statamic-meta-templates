@@ -1,0 +1,27 @@
+title: 'Meta template'
+fields:
+  -
+    handle: justbetter_meta_title
+    field:
+      input_type: text
+      antlers: false
+      display: 'Meta title'
+      type: text
+      icon: text
+      localizable: true
+      listable: hidden
+      instructions_position: above
+      visibility: visible
+      always_save: false
+  -
+    handle: justbetter_meta_description
+    field:
+      antlers: false
+      display: 'Meta description'
+      type: textarea
+      icon: textarea
+      localizable: true
+      listable: hidden
+      instructions_position: above
+      visibility: visible
+      always_save: false
