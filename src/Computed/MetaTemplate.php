@@ -5,6 +5,7 @@ namespace JustBetter\StatamicMetadataTemplates\Computed;
 use Statamic\Facades\Collection;
 use Statamic\Facades\Entry as EntryFacade;
 use Statamic\Entries\Entry;
+use Statamic\Facades\Site;
 use Statamic\Statamic;
 
 trait MetaTemplate
@@ -20,7 +21,20 @@ trait MetaTemplate
                             return $value;
                         }
 
-                        $metaTemplate = EntryFacade::query()->where('collection', 'meta_templates')->where('for_collection', $entry->collection->handle())->first();
+                        $taxonomies = $entry?->collection?->taxonomies()?->pluck('handle') ?? collect();
+
+                        $metaTemplateQuery = Entry::query()
+                            ->where('site', Site::current()?->handle())
+                            ->where('collection', 'meta_templates')
+                            ->where('for_collection', $entry->collection->handle());
+
+                        $taxonomies->each(function ($taxonomyHandle) use ($metaTemplateQuery, $entry) {
+                            if ($entry->get($taxonomyHandle)){
+                                $metaTemplateQuery->orWhere('terms', 'like', '%' . $entry->$taxonomyHandle->id . '%');
+                            }
+                        });
+
+                        $metaTemplate = $metaTemplateQuery->orderBy('terms')->first();
 
                         if (!$metaTemplate) {
                             return $value;
@@ -38,7 +52,7 @@ trait MetaTemplate
                             $replaceArray['{' . $field . '}'] = $value;
                         }
 
-                        return str_replace(array_keys($replaceArray), array_values($replaceArray), $templateData);
+                        return strtr($templateData, $replaceArray);
                     });
                 }
             }
